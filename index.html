@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Cloudex Search Engine</title> 
+    <style>
+        /* Reset Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            height: 100%;
+            transition: background-color 0.5s, color 0.5s;
+        }
+
+        /* Shared Styles */
+        .screen {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+            background: linear-gradient(135deg, #1e88e5, #6ab7ff);
+            color: white;
+            animation: fadeIn 1s;
+        }
+
+        .active {
+            display: flex;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 12px 20px;
+            font-size: 16px;
+            background: #1e88e5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background: #1565c0;
+            transform: scale(1.1);
+        }
+
+        input[type="text"], input[type="email"] {
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            width: 90%;
+            margin: 10px 0;
+            max-width: 300px;
+            box-sizing: border-box;
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 600px) {
+            button {
+                font-size: 14px;
+                padding: 10px 15px;
+            }
+
+            input[type="text"], input[type="email"] {
+                font-size: 14px;
+                width: 95%;
+            }
+        }
+
+        .home-screen header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .home-screen header .logo {
+            font-size: 22px;
+            font-weight: bold;
+            color: #3f51b5;
+        }
+
+        .theme-toggle {
+            padding: 8px 12px;
+            font-size: 14px;
+            background: #1e88e5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background: #1565c0;
+        }
+
+        .profile-panel, .website-card, .tools-card {
+            background: white;
+            color: #333;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .profile-panel h2, .website-card h2, .tools-card h2 {
+            margin: 0 0 10px;
+            font-size: 20px;
+        }
+
+        .profile-panel p, .website-card p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            background: #121212;
+            color: #e0e0e0;
+        }
+
+        .dark-mode .theme-toggle {
+            background: #333;
+            color: #fff;
+        }
+
+        .dark-mode .profile-panel, .dark-mode .website-card, .dark-mode .tools-card {
+            background: #333;
+            color: #fff;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style> 
+</head> 
+<body> 
+    <!-- Starting Screen -->
+    <div class="screen active" id="startScreen"> 
+        <h1>Cloudex Search Engine</h1> 
+        <p>Powered by Google</p> 
+        <button onclick="showScreen('signupScreen')">Get Started</button> 
+    </div> 
+
+    <!-- Signup Screen -->
+    <div class="screen" id="signupScreen"> 
+        <h1>Signup</h1> 
+        <input type="text" id="username" placeholder="Enter your name" required> 
+        <input type="email" id="email" placeholder="Enter your email" required> 
+        <button onclick="signup()">Signup</button> 
+    </div> 
+
+    <!-- Home Screen -->
+    <div class="screen" id="homeScreen"> 
+        <header> 
+            <div class="logo">Cloudex</div> 
+            <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button> 
+        </header> 
+        <div class="main-container"> 
+            <h1 id="welcomeMessage">Welcome to Cloudex Search Engine</h1> 
+            <div class="search-box"> 
+                <input type="text" id="searchQuery" placeholder="Search anything..."> 
+                <button onclick="performSearch()">Search</button> 
+            </div> 
+
+            <!-- Profile Panel -->
+            <div class="profile-panel" id="profilePanel"> 
+                <h2>User Profile</h2> 
+                <p><strong>Name:</strong> <span id="profileName"></span></p> 
+                <p><strong>Email:</strong> <span id="profileEmail"></span></p> 
+            </div> 
+
+            <!-- Website Card -->
+            <div class="website-card"> 
+                <h2>Visit Our Website</h2> 
+                <p>Check out the official Cloudex website for more updates and features:</p> 
+                <a href="https://cloudex85.wordpress.com" target="_blank">cloudex85.wordpress.com</a> 
+            </div> 
+
+            <!-- Tools Card -->
+            <div class="tools-card"> 
+                <h2>Cloudex Essential Tools</h2> 
+                <p>Access essential tools:</p> 
+                <button onclick="window.open('https://calculator.com', '_blank')">Calculator</button> 
+                <button onclick="window.open('https://qrcodescan.in/', '_blank')">QR Code Scanner</button> 
+                <button onclick="window.open('https://www.wallpapers.com', '_blank')">Wallpapers</button> 
+            </div> 
+        </div> 
+    </div> 
+
+    <!-- JavaScript -->
+    <script>
+        // Local Storage Check
+        window.onload = function () {
+            const userName = localStorage.getItem('username');
+            const userEmail = localStorage.getItem('email');
+
+            if (userName && userEmail) {
+                showScreen('homeScreen');
+                populateProfile(userName, userEmail);
+            }
+        };
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => screen.classList.remove('active'));
+            document.getElementById(screenId).classList.add('active');
+        }
+
+        function signup() {
+            const userName = document.getElementById('username').value.trim();
+            const userEmail = document.getElementById('email').value.trim();
+
+            if (userName && userEmail) {
+                localStorage.setItem('username', userName);
+                localStorage.setItem('email', userEmail);
+                populateProfile(userName, userEmail);
+                showScreen('homeScreen');
+            } else {
+                alert('Please fill out all fields.');
+            }
+        }
+
+        function populateProfile(name, email) {
+            document.getElementById('profileName').textContent = name;
+            document.getElementById('profileEmail').textContent = email;
+            document.getElementById('welcomeMessage').textContent = `Welcome, ${name}!`;
+        }
+
+        function performSearch() {
+            const query = document.getElementById('searchQuery').value.trim();
+            if (query) {
+                const url = `https://cse.google.com/cse?cx=3312bb485c87143fb&q=${encodeURIComponent(query)}`;
+                window.open(url, '_blank');
+            } else {
+                alert('Please enter a search query.');
+            }
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script> 
+
+</body></html>
