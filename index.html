@@ -25,7 +25,6 @@
             background: linear-gradient(135deg, #1e88e5, #6ab7ff);
             color: white;
             animation: fadeIn 1s;
-            overflow-y: auto; /* Make content scrollable */
         }
 
         .active {
@@ -164,18 +163,6 @@
                 opacity: 1;
             }
         }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .search-box input, input[type="text"], input[type="email"] {
-                width: 90%;
-            }
-
-            .profile-panel, .website-card, .tools-card {
-                width: 95%;
-                margin-top: 20px;
-            }
-        }
     </style> 
  </head> 
  <body> <!-- Starting Screen --> 
@@ -214,9 +201,6 @@
      <button onclick="window.open('https://calculator.com', '_blank')">Calculator</button> 
      <button onclick="window.open('https://www.the-qrcode-generator.com', '_blank')">QR Code Scanner</button> 
      <button onclick="window.open('https://www.wallpapers.com', '_blank')">Wallpapers</button> 
-     <button onclick="window.open('https://www.xe.com/currencyconverter/', '_blank')">Currency Converter</button>
-     <button onclick="window.open('https://translate.google.com', '_blank')">Language Translator</button>
-     <button onclick="window.open('https://png2jpg.com', '_blank')">PNG to JPG Converter</button>
     </div> 
    </div> 
   </div> <!-- JavaScript --> 
