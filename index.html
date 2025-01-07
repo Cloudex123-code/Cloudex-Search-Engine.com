@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="en"> 
- <head> 
-  <meta charset="UTF-8"> 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <title>Cloudex Search Engine</title> 
-  <style>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudex Search Engine</title>
+    <style>
         /* Reset Styles */
         body, html {
             margin: 0;
@@ -105,7 +105,7 @@
         }
 
         /* Profile Panel */
-        .profile-panel, .website-card, .tools-card {
+        .profile-panel, .website-card, .tools-card, .promotion-panel {
             background: white;
             color: #333;
             margin-top: 30px;
@@ -118,23 +118,23 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .profile-panel h2, .website-card h2, .tools-card h2 {
+        .profile-panel h2, .website-card h2, .tools-card h2, .promotion-panel h2 {
             margin: 0 0 10px;
             font-size: 22px;
         }
 
-        .profile-panel p, .website-card p {
+        .profile-panel p, .website-card p, .promotion-panel p {
             margin: 5px 0;
             font-size: 16px;
         }
 
-        .website-card a {
+        .website-card a, .promotion-panel a {
             color: #1e88e5;
             text-decoration: none;
             font-weight: bold;
         }
 
-        .website-card a:hover {
+        .website-card a:hover, .promotion-panel a:hover {
             text-decoration: underline;
         }
 
@@ -149,9 +149,26 @@
             color: #fff;
         }
 
-        .dark-mode .profile-panel, .dark-mode .website-card, .dark-mode .tools-card {
+        .dark-mode .profile-panel, .dark-mode .website-card, .dark-mode .tools-card, .dark-mode .promotion-panel {
             background: #333;
             color: #fff;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            .profile-panel, .website-card, .tools-card, .promotion-panel {
+                width: 95%;
+                margin-top: 20px;
+            }
+
+            .search-box input {
+                width: 60%;
+            }
+
+            button {
+                padding: 10px 15px;
+                font-size: 14px;
+            }
         }
 
         /* Animations */
@@ -163,105 +180,130 @@
                 opacity: 1;
             }
         }
-    </style> 
- </head> 
- <body> <!-- Starting Screen --> 
-  <div class="screen active" id="startScreen"> 
-   <h1>Cloudex Search Engine</h1> 
-   <p>Powered by Google Custom Search</p> <button onclick="showScreen('signupScreen')">Get Started</button> 
-  </div> <!-- Signup Screen --> 
-  <div class="screen" id="signupScreen"> 
-   <h1>Signup</h1> 
-   <input type="text" id="username" placeholder="Enter your name" required> 
-   <input type="email" id="email" placeholder="Enter your email" required> <button onclick="signup()">Signup</button> 
-  </div> <!-- Home Screen --> 
-  <div class="screen" id="homeScreen"> 
-   <header> 
-    <div class="logo">
-      Cloudex 
-    </div> <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button> 
-   </header> 
-   <div class="main-container"> 
-    <h1 id="welcomeMessage">Welcome to Cloudex Search Engine</h1> 
-    <div class="search-box"> 
-     <input type="text" id="searchQuery" placeholder="Search anything..."> <button onclick="performSearch()">Search</button> 
-    </div> <!-- Profile Panel --> 
-    <div class="profile-panel" id="profilePanel"> 
-     <h2>User Profile</h2> 
-     <p><strong>Name:</strong> <span id="profileName"></span></p> 
-     <p><strong>Email:</strong> <span id="profileEmail"></span></p> 
-    </div> <!-- Website Card --> 
-    <div class="website-card"> 
-     <h2>Visit Our Website</h2> 
-     <p>Check out the official Cloudex website for more updates and features:</p> <a href="https://cloudex85.wordpress.com" target="_blank">cloudex85.wordpress.com</a> 
-    </div> <!-- Tools Card --> 
-    <div class="tools-card"> 
-     <h2>Cloudex Essential Tools</h2> 
-     <p>Access essential tools:</p> 
-     <button onclick="window.open('https://calculator.com', '_blank')">Calculator</button> 
-     <button onclick="window.open('https://www.the-qrcode-generator.com', '_blank')">QR Code Scanner</button> 
-     <button onclick="window.open('https://www.wallpapers.com', '_blank')">Wallpapers</button> 
-    </div> 
-   </div> 
-  </div> <!-- JavaScript --> 
-  <script>
-        // Check if user data exists in localStorage
-        window.onload = function () {
-            const userName = localStorage.getItem('username');
-            const userEmail = localStorage.getItem('email');
+    </style>
+</head>
+<body>
+<!-- Starting Screen -->
+<div class="screen active" id="startScreen">
+    <h1>Cloudex Search Engine</h1>
+    <p>Powered by Google Custom Search</p>
+    <button onclick="showScreen('signupScreen')">Get Started</button>
+</div>
+<!-- Signup Screen -->
+<div class="screen" id="signupScreen">
+    <h1>Signup</h1>
+    <input type="text" id="username" placeholder="Enter your name" required>
+    <input type="email" id="email" placeholder="Enter your email" required>
+    <button onclick="signup()">Signup</button>
+</div>
+<!-- Home Screen -->
+<div class="screen" id="homeScreen">
+    <header>
+        <div class="logo">
+            Cloudex
+        </div>
+        <button class="theme-toggle" onclick="toggleTheme()">Toggle Dark Mode</button>
+    </header>
+    <div class="main-container">
+        <h1 id="welcomeMessage">Welcome to Cloudex Search Engine</h1>
+        <div class="search-box">
+            <input type="text" id="searchQuery" placeholder="Search anything...">
+            <button onclick="performSearch()">Search</button>
+        </div>
+        <!-- Profile Panel -->
+        <div class="profile-panel" id="profilePanel">
+            <h2>User Profile</h2>
+            <p><strong>Name:</strong> <span id="profileName"></span></p>
+            <p><strong>Email:</strong> <span id="profileEmail"></span></p>
+        </div>
+        <!-- Website Card -->
+        <div class="website-card">
+            <h2>Visit Our Website</h2>
+            <p>Check out the official Cloudex website for more updates and features:</p>
+            <a href="https://cloudex85.wordpress.com" target="_blank">cloudex85.wordpress.com</a>
+        </div>
+        <!-- Tools Card -->
+        <div class="tools-card">
+            <h2>Cloudex Essential Tools</h2>
+            <p>Access essential tools:</p>
+            <button onclick="window.open('https://calculator.com', '_blank')">Calculator</button>
+            <button onclick="window.open('https://www.the-qrcode-generator.com', '_blank')">QR Code Scanner</button>
+            <button onclick="window.open('https://www.wallpapers.com', '_blank')">Wallpapers</button>
+        </div>
+        <!-- Promotion Panel -->
+        <div class="promotion-panel">
+            <h2>Promotions</h2>
+            <p>Check out our latest affiliate promotions:</p>
+            <a href="https://affiliate-link1.com" target="_blank">
+                <img src="https://via.placeholder.com/150" alt="Affiliate Promotion 1">
+                Affiliate Promotion 1
+            </a>
+            <a href="https://affiliate-link2.com" target="_blank">
+                <img src="https://via.placeholder.com/150" alt="Affiliate Promotion 2">
+                Affiliate Promotion 2
+            </a>
+        </div>
+    </div>
+</div>
+<!-- JavaScript -->
+<script>
+    // Check if user data exists in localStorage
+    window.onload = function () {
+        const userName = localStorage.getItem('username');
+        const userEmail = localStorage.getItem('email');
 
-            if (userName && userEmail) {
-                showScreen('homeScreen');
-                populateProfile(userName, userEmail);
-            }
-        };
-
-        // Show specified screen
-        function showScreen(screenId) {
-            document.querySelectorAll('.screen').forEach(screen => {
-                screen.classList.remove('active');
-            });
-            document.getElementById(screenId).classList.add('active');
+        if (userName && userEmail) {
+            showScreen('homeScreen');
+            populateProfile(userName, userEmail);
         }
+    };
 
-        // Signup and save user details
-        function signup() {
-            const userName = document.getElementById('username').value.trim();
-            const userEmail = document.getElementById('email').value.trim();
+    // Show specified screen
+    function showScreen(screenId) {
+        document.querySelectorAll('.screen').forEach(screen => {
+            screen.classList.remove('active');
+        });
+        document.getElementById(screenId).classList.add('active');
+    }
 
-            if (userName && userEmail) {
-                localStorage.setItem('username', userName);
-                localStorage.setItem('email', userEmail);
+    // Signup and save user details
+    function signup() {
+        const userName = document.getElementById('username').value.trim();
+        const userEmail = document.getElementById('email').value.trim();
 
-                populateProfile(userName, userEmail);
-                showScreen('homeScreen');
-            } else {
-                alert('Please fill out all fields.');
-            }
+        if (userName && userEmail) {
+            localStorage.setItem('username', userName);
+            localStorage.setItem('email', userEmail);
+
+            populateProfile(userName, userEmail);
+            showScreen('homeScreen');
+        } else {
+            alert('Please fill out all fields.');
         }
+    }
 
-        // Populate profile with user data
-        function populateProfile(name, email) {
-            document.getElementById('profileName').textContent = name;
-            document.getElementById('profileEmail').textContent = email;
-            document.getElementById('welcomeMessage').textContent = `Welcome, ${name}!`;
-        }
+    // Populate profile with user data
+    function populateProfile(name, email) {
+        document.getElementById('profileName').textContent = name;
+        document.getElementById('profileEmail').textContent = email;
+        document.getElementById('welcomeMessage').textContent = `Welcome, ${name}!`;
+    }
 
-        // Perform Search using Google CSE
-        function performSearch() {
-            const query = document.getElementById('searchQuery').value.trim();
-            if (query) {
-                const url = `https://cse.google.com/cse?cx=3312bb485c87143fb&q=${encodeURIComponent(query)}`;
-                window.open(url, '_blank');
-            } else {
-                alert('Please enter a search query.');
-            }
+    // Perform Search using Google CSE
+    function performSearch() {
+        const query = document.getElementById('searchQuery').value.trim();
+        if (query) {
+            const url = `https://cse.google.com/cse?cx=3312bb485c87143fb&q=${encodeURIComponent(query)}`;
+            window.open(url, '_blank');
+        } else {
+            alert('Please enter a search query.');
         }
+    }
 
-        // Toggle Dark Mode
-        function toggleTheme() {
-            document.body.classList.toggle('dark-mode');
-        }
-    </script> 
- </body>
+    // Toggle Dark Mode
+    function toggleTheme() {
+        document.body.classList.toggle('dark-mode');
+    }
+</script>
+</body>
 </html>
