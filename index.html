@@ -79,13 +79,18 @@
         }
 
         .theme-toggle {
-            padding: 5px 10px;
+            padding: 10px 15px; /* Adjust padding for better visibility */
             border: none;
             border-radius: 5px;
-            background: #fff;
-            color: #000;
+            background: #1e88e5;
+            color: white;
             cursor: pointer;
             transition: background 0.3s, color 0.3s;
+            font-size: 16px; /* Increase font size for better readability */
+        }
+
+        .theme-toggle:hover {
+            background: #1565c0;
         }
 
         .search-box {
@@ -105,7 +110,7 @@
         }
 
         /* Profile Panel */
-        .profile-panel, .website-card, .tools-card, .promotion-panel {
+        .profile-panel, .website-card, .tools-card {
             background: white;
             color: #333;
             margin-top: 30px;
@@ -118,23 +123,23 @@
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
-        .profile-panel h2, .website-card h2, .tools-card h2, .promotion-panel h2 {
+        .profile-panel h2, .website-card h2, .tools-card h2 {
             margin: 0 0 10px;
             font-size: 22px;
         }
 
-        .profile-panel p, .website-card p, .promotion-panel p {
+        .profile-panel p, .website-card p {
             margin: 5px 0;
             font-size: 16px;
         }
 
-        .website-card a, .promotion-panel a {
+        .website-card a {
             color: #1e88e5;
             text-decoration: none;
             font-weight: bold;
         }
 
-        .website-card a:hover, .promotion-panel a:hover {
+        .website-card a:hover {
             text-decoration: underline;
         }
 
@@ -149,26 +154,9 @@
             color: #fff;
         }
 
-        .dark-mode .profile-panel, .dark-mode .website-card, .dark-mode .tools-card, .dark-mode .promotion-panel {
+        .dark-mode .profile-panel, .dark-mode .website-card, .dark-mode .tools-card {
             background: #333;
             color: #fff;
-        }
-
-        /* Mobile Optimization */
-        @media (max-width: 768px) {
-            .profile-panel, .website-card, .tools-card, .promotion-panel {
-                width: 95%;
-                margin-top: 20px;
-            }
-
-            .search-box input {
-                width: 60%;
-            }
-
-            button {
-                padding: 10px 15px;
-                font-size: 14px;
-            }
         }
 
         /* Animations */
@@ -227,21 +215,8 @@
             <h2>Cloudex Essential Tools</h2>
             <p>Access essential tools:</p>
             <button onclick="window.open('https://calculator.com', '_blank')">Calculator</button>
-            <button onclick="window.open('https://www.the-qrcode-generator.com', '_blank')">QR Code Scanner</button>
+            <button onclick="window.open('https://qrcodescan.in/', '_blank')">QR Code Scanner</button>
             <button onclick="window.open('https://www.wallpapers.com', '_blank')">Wallpapers</button>
-        </div>
-        <!-- Promotion Panel -->
-        <div class="promotion-panel">
-            <h2>Promotions</h2>
-            <p>Check out our latest affiliate promotions:</p>
-            <a href="https://affiliate-link1.com" target="_blank">
-                <img src="https://via.placeholder.com/150" alt="Affiliate Promotion 1">
-                Affiliate Promotion 1
-            </a>
-            <a href="https://affiliate-link2.com" target="_blank">
-                <img src="https://via.placeholder.com/150" alt="Affiliate Promotion 2">
-                Affiliate Promotion 2
-            </a>
         </div>
     </div>
 </div>
